@@ -23,6 +23,21 @@ ORDER BY avg_imdb DESC;
 
 -- What is the highest grossing G-rated movie? Which company distributed it?
 
+SELECT 
+	film_title,
+	mpaa_rating,
+	worldwide_gross,
+	company_name
+FROM specs AS s
+	LEFT JOIN revenue AS r
+	ON s.movie_id = r.movie_id
+	LEFT JOIN distributors AS d
+	ON d.distributor_id = s.domestic_distributor_id
+WHERE mpaa_rating = 'G'
+ORDER BY worldwide_gross DESC;
+
+-- Toy Story 4, Walt Disney
+
 -- Write a query that returns, for each distributor in the distributors table, the distributor name and the number of movies associated with that distributor in the movies table. Your result set should include all of the distributors, whether or not they have any movies in the movies table.
 
 -- Write a query that returns the five distributors with the highest average movie budget.
